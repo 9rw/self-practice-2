@@ -36,7 +36,7 @@ function updateQuote(id, updatedQuote) {
   // TODO: Find the quote by id and update its properties
   quotes.forEach((obj, i)=> {
     if (obj.id === id){
-      quotes.splice(i, 1, updatedQuote)
+      quotes[i] = updatedQuote
     }
   })
 }
