@@ -1,0 +1,73 @@
+Week6 - Lesson 1: Arrays, Objects, and Functions
+
+โจทย์:
+Students will practice working with JavaScript arrays, objects, and functions by creating a quote manager. This lesson does not involve HTML or the DOM yet.
+### 1. Define Data
+
+- Create an array named `quotes`.
+- Each quote should be an object with the following properties:
+  - `id` (number)
+  - `content` (string)
+  - `author` (string)
+
+### 2. Create Functions
+
+#### `addQuote(quote)`
+
+- Adds a new quote object to the `quotes` array.
+
+#### `deleteQuote(id)`
+
+- Removes the quote with the given `id` from the array.
+
+#### `updateQuote(id, updatedQuote)`
+
+- Updates the `content` and/or `author` of the quote with the given `id`.
+
+#### `getAllQuotes()`
+
+- Returns the current list of quotes.
+
+### 3. Write Test Cases
+
+- Add 3 sample quotes using `addQuote`
+- Delete 1 quote using `deleteQuote`
+- Update 1 quote using `updateQuote`
+- Log all quotes using `getAllQuotes`
+
+### 4. Expected Output Example
+Initial Quotes:
+[
+  { id: 1, content: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
+  { id: 2, content: "In the middle of every difficulty lies opportunity.", author: "Albert Einstein" },
+  { id: 3, content: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" }
+]
+
+After Deleting Quote with id 2:
+[
+  { id: 1, content: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
+  { id: 3, content: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" }
+]
+
+After Updating Quote with id 1:
+[
+  { id: 1, content: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+  { id: 3, content: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" }
+]
+
+หลักการทำงาน:
+1. addQuote(quote)
+  - เรียกตัวแปร quotes(array) ใช้ method push เพื่อ quote อันใหม่ไปเข้าท้ายสุด
+2. deleteQuote(id)
+  - forEach loop ใน quotes(array) โดยมี 2 parameters คือ object และ i(index ของ object ที่ลูป) และเช็คว่า object key "id" มีค่าเท่ากับ parameter id มั้ย
+  - ถ้าเท่ากันก็ให้ใช้เรียกตัวแปร quotes ใช้ method splice(i, id)
+  - splice(index, จำนวนที่จะลบ)
+3. updateQuote(id, updatedQuote)
+  - เหมือนกันกับวิธี deleteQuote ต่างกันตรงที่
+  - ถ้าเท่ากันก็ให้ใช้เรียกตัวแปร quotes และใส่ตำแหน่ง quotes[i] = updatedQuote
+4. getAllQuotes()
+  - return quotes
+
+Reflect:
+- ได้ฝึกใช้ splice
+- ทบทวนการจัดการค่าของ Array, Object
