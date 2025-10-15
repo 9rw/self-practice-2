@@ -1,0 +1,15 @@
+Week 8 — Expandable FAQ (DOM & Events)
+
+เป้าหมาย / Goal:
+- ฝึก DOM traversal และ event handling โดยทำ expandable FAQ: ผู้ใช้คลิกคำถามแล้วคำตอบจะโชว์/ซ่อน และลูกศรจะหมุนแสดงสถานะ
+
+Key functions (`main.js`)
+- หา `document.querySelectorAll('.faq-question')` แล้ว attach click handler
+- ใน handler:
+  - หา answer ที่เกี่ยวข้องด้วย `question.nextElementSibling`
+  - toggle class `show` บน answer
+  - toggle class `active` บน question สำหรับ styling
+  - หมุนลูกศรตามสถานะ (เช่น `transform: rotateZ(180deg)`)
+
+Reflection / การสะท้อน:
+- ฝึก DOM และการต่อ event กับ element
