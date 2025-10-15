@@ -1,0 +1,18 @@
+Week 9 — FormData API
+
+เป้าหมาย:
+- ฝึกใช้ FormData API, การจับ submit event ของฟอร์ม, การอ่านค่า input จาก DOM และการแสดงผลข้อมูล JSON
+
+Key Function:
+- Query selector: `const form = document.querySelector('#myForm')`
+- event listener: `form.addEventListener('submit', handler)`
+- handler ทำงานดังนี้:
+	1. `event.preventDefault()` — ป้องกันการ submit แบบดั้งเดิม
+	2. `const formData = new FormData(form)` — สร้าง FormData จากฟอร์ม
+	3. `Object.fromEntries(formData)` — แปลงเป็น plain object
+	4. `JSON.stringify(..., null, 2)` — แปลงเป็น pretty JSON แล้วแสดงใน `#data`
+	5. เคลียร์ค่า input fields (set value = "")
+
+Reflect:
+- FormData เป็นวิธีที่สะดวกมากสำหรับการรวบรวมค่าจากฟอร์มโดยไม่ต้องดึง value ทีละ element ด้วยตนเอง
+  การใช้ `Object.fromEntries(formData)` เป็น pattern ที่สั้นและอ่านง่ายสำหรับแปลงเป็น object ที่จะนำไปใช้ต่อได้ทันที
