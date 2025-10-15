@@ -1,0 +1,29 @@
+Week 7 - DOM, Events & Flashcard
+
+Target:
+- ฝึก DOM manipulation และ event handling โดยสร้าง flashcard UI ที่แสดง `word`, `translated` และลิงก์ไปยัง "see the definition" (external definition)
+
+1. Data:
+- ใช้ array เรียก `data` เพื่อเก็บ card objects.
+- Each card:
+  - `id` (number) - unique id
+  - `word` (string) - คำศัพท์
+  - `translated` (string) - ความหมาย/คำแปล
+
+2. DOM structure (from `index.html`) / โครงสร้าง DOM
+- `.card_container` เป็นตัวเก็บ card หลัก `.card` และ the `.list_container`.
+- `.card` มีสองด้าน: `.front` และ `.back`.
+- `.list` (ul) แสดงคำหลายๆ คำเป็น list `<li>` ที่สามารกดดูแต่ละคำได้.
+
+- Click handlers:
+  - `.card` click toggles `fliped` attribute.
+  - กด `<li>` เพื่อ set `.card` attribute `n` ที่ card id และเรียก `editCard(id)`.
+
+
+- With sample data:
+  - front: "Integrity"
+  - back: "ความซื่อสัตย์"
+  - link: `https://www.google.com/search?q=integrity definition`
+
+Reflect:
+- การทำโปรเจคเล็ก ๆ แบบนี้ช่วยให้เข้าใจการเชื่อมต่อระหว่าง logic กับ view ได้ชัดขึ้น
