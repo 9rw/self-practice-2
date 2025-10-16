@@ -1,0 +1,48 @@
+Week 10 - DOM & Events: Quote Manager
+
+Target:
+Combine DOM manipulation + event handling เพื่อสร้างแอป Quote Manager ที่สามารถ:
+แสดงรายการ quote
+เพิ่ม / แก้ไข / ลบ quote ผ่านฟอร์ม
+กดดู random quote ได้
+
+
+Lesson 2: DOM manipulation — render ข้อมูล quote ออกสู่หน้าเว็บ
+สิ่งที่ต้องทำ:
+ใช้ addQuote() 3 ครั้งเพื่อ seed ข้อมูลเริ่มต้น
+เขียน renderQuotes():
+ล้าง <section id="quote-list">
+ลูป getAllQuotes() แล้ว append <div> ที่แสดง quote:
+"quote content" — author
+เรียก renderQuotes() เมื่อหน้าโหลดเสร็จ
+
+Lesson 3: Events & interaction — ทำให้ปุ่มทำงาน เช่น submit form, edit/delete, random quote
+createQuoteElement(quote) return:
+<div data-id="123">
+  <p>"..."</p>
+  <p>— ...</p>
+  <button class="edit-btn" data-id="123">Edit</button>
+  <button class="delete-btn" data-id="123">Delete</button>
+</div>
+
+Events:
+Edit: กรอกค่า #quoteId, #content, #author ลงในฟอร์ม
+Delete: เรียก deleteQuote(id) แล้ว deleteQuoteFromDOM(id)
+
+Functions:
+addQuoteToDOM(quote)	เพิ่ม quote ลงใน DOM
+updateQuoteInDOM(quote)	แก้ไข quote ใน DOM
+deleteQuoteFromDOM(id)	ลบ quote จาก DOM
+renderQuotes()	ใช้ helper ข้างบน render ทั้งหมด
+
+Form Submit Handler:
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // 1. อ่านค่า quoteId, content, author
+  // 2. ถ้ามี quoteId -> updateQuote + updateQuoteInDOM
+  // 3. ถ้าไม่มี -> addQuote + addQuoteToDOM
+  // 4. เคลียร์ฟอร์ม
+});
+
+Reflect:
+ช่วยให้เข้าใจการเชื่อมโยง data -> DOM -> events
