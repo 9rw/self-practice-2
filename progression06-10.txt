@@ -1,0 +1,191 @@
+Week6 - Lesson 1: Arrays, Objects, and Functions
+
+โจทย์:
+Students will practice working with JavaScript arrays, objects, and functions by creating a quote manager. This lesson does not involve HTML or the DOM yet.
+### 1. Define Data
+
+- Create an array named `quotes`.
+- Each quote should be an object with the following properties:
+  - `id` (number)
+  - `content` (string)
+  - `author` (string)
+
+### 2. Create Functions
+
+#### `addQuote(quote)`
+
+- Adds a new quote object to the `quotes` array.
+
+#### `deleteQuote(id)`
+
+- Removes the quote with the given `id` from the array.
+
+#### `updateQuote(id, updatedQuote)`
+
+- Updates the `content` and/or `author` of the quote with the given `id`.
+
+#### `getAllQuotes()`
+
+- Returns the current list of quotes.
+
+### 3. Write Test Cases
+
+- Add 3 sample quotes using `addQuote`
+- Delete 1 quote using `deleteQuote`
+- Update 1 quote using `updateQuote`
+- Log all quotes using `getAllQuotes`
+
+### 4. Expected Output Example
+Initial Quotes:
+[
+  { id: 1, content: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
+  { id: 2, content: "In the middle of every difficulty lies opportunity.", author: "Albert Einstein" },
+  { id: 3, content: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" }
+]
+
+After Deleting Quote with id 2:
+[
+  { id: 1, content: "The only limit to our realization of tomorrow is our doubts of today.", author: "Franklin D. Roosevelt" },
+  { id: 3, content: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" }
+]
+
+After Updating Quote with id 1:
+[
+  { id: 1, content: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" },
+  { id: 3, content: "It does not matter how slowly you go as long as you do not stop.", author: "Confucius" }
+]
+
+หลักการทำงาน:
+1. addQuote(quote)
+  - เรียกตัวแปร quotes(array) ใช้ method push เพื่อ quote อันใหม่ไปเข้าท้ายสุด
+2. deleteQuote(id)
+  - forEach loop ใน quotes(array) โดยมี 2 parameters คือ object และ i(index ของ object ที่ลูป) และเช็คว่า object key "id" มีค่าเท่ากับ parameter id มั้ย
+  - ถ้าเท่ากันก็ให้ใช้เรียกตัวแปร quotes ใช้ method splice(i, id)
+  - splice(index, จำนวนที่จะลบ)
+3. updateQuote(id, updatedQuote)
+  - เหมือนกันกับวิธี deleteQuote ต่างกันตรงที่
+  - ถ้าเท่ากันก็ให้ใช้เรียกตัวแปร quotes และใส่ตำแหน่ง quotes[i] = updatedQuote
+4. getAllQuotes()
+  - return quotes
+
+Reflect:
+- ได้ฝึกใช้ splice
+- ทบทวนการจัดการค่าของ Array, Object
+================================================================================================================================================
+
+Week 7 - DOM, Events & Flashcard
+
+Target:
+- ฝึก DOM manipulation และ event handling โดยสร้าง flashcard UI ที่แสดง `word`, `translated` และลิงก์ไปยัง "see the definition" (external definition)
+
+1. Data:
+- ใช้ array เรียก `data` เพื่อเก็บ card objects.
+- Each card:
+  - `id` (number) - unique id
+  - `word` (string) - คำศัพท์
+  - `translated` (string) - ความหมาย/คำแปล
+
+2. DOM structure (from `index.html`) / โครงสร้าง DOM
+- `.card_container` เป็นตัวเก็บ card หลัก `.card` และ the `.list_container`.
+- `.card` มีสองด้าน: `.front` และ `.back`.
+- `.list` (ul) แสดงคำหลายๆ คำเป็น list `<li>` ที่สามารกดดูแต่ละคำได้.
+
+- Click handlers:
+  - `.card` click toggles `fliped` attribute.
+  - กด `<li>` เพื่อ set `.card` attribute `n` ที่ card id และเรียก `editCard(id)`.
+
+
+- With sample data:
+  - front: "Integrity"
+  - back: "ความซื่อสัตย์"
+  - link: `https://www.google.com/search?q=integrity definition`
+
+Reflect:
+- การทำโปรเจคเล็ก ๆ แบบนี้ช่วยให้เข้าใจการเชื่อมต่อระหว่าง logic กับ view ได้ชัดขึ้น
+================================================================================================================================================
+
+Week 8 — Expandable FAQ (DOM & Events)
+
+เป้าหมาย / Goal:
+- ฝึก DOM traversal และ event handling โดยทำ expandable FAQ: ผู้ใช้คลิกคำถามแล้วคำตอบจะโชว์/ซ่อน และลูกศรจะหมุนแสดงสถานะ
+
+Key functions (`main.js`)
+- หา `document.querySelectorAll('.faq-question')` แล้ว attach click handler
+- ใน handler:
+  - หา answer ที่เกี่ยวข้องด้วย `question.nextElementSibling`
+  - toggle class `show` บน answer
+  - toggle class `active` บน question สำหรับ styling
+  - หมุนลูกศรตามสถานะ (เช่น `transform: rotateZ(180deg)`)
+
+Reflection / การสะท้อน:
+- ฝึก DOM และการต่อ event กับ element
+================================================================================================================================================
+
+Week 9 — FormData API
+
+เป้าหมาย:
+- ฝึกใช้ FormData API, การจับ submit event ของฟอร์ม, การอ่านค่า input จาก DOM และการแสดงผลข้อมูล JSON
+
+Key Function:
+- Query selector: `const form = document.querySelector('#myForm')`
+- event listener: `form.addEventListener('submit', handler)`
+- handler ทำงานดังนี้:
+	1. `event.preventDefault()` — ป้องกันการ submit แบบดั้งเดิม
+	2. `const formData = new FormData(form)` — สร้าง FormData จากฟอร์ม
+	3. `Object.fromEntries(formData)` — แปลงเป็น plain object
+	4. `JSON.stringify(..., null, 2)` — แปลงเป็น pretty JSON แล้วแสดงใน `#data`
+	5. เคลียร์ค่า input fields (set value = "")
+
+Reflect:
+- FormData เป็นวิธีที่สะดวกมากสำหรับการรวบรวมค่าจากฟอร์มโดยไม่ต้องดึง value ทีละ element ด้วยตนเอง
+  การใช้ `Object.fromEntries(formData)` เป็น pattern ที่สั้นและอ่านง่ายสำหรับแปลงเป็น object ที่จะนำไปใช้ต่อได้ทันที
+================================================================================================================================================
+
+Week 10 - DOM & Events: Quote Manager
+
+Target:
+Combine DOM manipulation + event handling เพื่อสร้างแอป Quote Manager ที่สามารถ:
+แสดงรายการ quote
+เพิ่ม / แก้ไข / ลบ quote ผ่านฟอร์ม
+กดดู random quote ได้
+
+
+Lesson 2: DOM manipulation — render ข้อมูล quote ออกสู่หน้าเว็บ
+สิ่งที่ต้องทำ:
+ใช้ addQuote() 3 ครั้งเพื่อ seed ข้อมูลเริ่มต้น
+เขียน renderQuotes():
+ล้าง <section id="quote-list">
+ลูป getAllQuotes() แล้ว append <div> ที่แสดง quote:
+"quote content" — author
+เรียก renderQuotes() เมื่อหน้าโหลดเสร็จ
+
+Lesson 3: Events & interaction — ทำให้ปุ่มทำงาน เช่น submit form, edit/delete, random quote
+createQuoteElement(quote) return:
+<div data-id="123">
+  <p>"..."</p>
+  <p>— ...</p>
+  <button class="edit-btn" data-id="123">Edit</button>
+  <button class="delete-btn" data-id="123">Delete</button>
+</div>
+
+Events:
+Edit: กรอกค่า #quoteId, #content, #author ลงในฟอร์ม
+Delete: เรียก deleteQuote(id) แล้ว deleteQuoteFromDOM(id)
+
+Functions:
+addQuoteToDOM(quote)	เพิ่ม quote ลงใน DOM
+updateQuoteInDOM(quote)	แก้ไข quote ใน DOM
+deleteQuoteFromDOM(id)	ลบ quote จาก DOM
+renderQuotes()	ใช้ helper ข้างบน render ทั้งหมด
+
+Form Submit Handler:
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  // 1. อ่านค่า quoteId, content, author
+  // 2. ถ้ามี quoteId -> updateQuote + updateQuoteInDOM
+  // 3. ถ้าไม่มี -> addQuote + addQuoteToDOM
+  // 4. เคลียร์ฟอร์ม
+});
+
+Reflect:
+ช่วยให้เข้าใจการเชื่อมโยง data -> DOM -> events
